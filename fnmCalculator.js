@@ -1,4 +1,4 @@
-// Function to handle input from the user
+// Function to get player record from input field
 function getPlayerRecord(id) {
   return parseInt(document.getElementById(id).value);
 }
@@ -47,10 +47,10 @@ function main() {
   const tie = 1;
 
   // Get player A's record
-  let playerA = getPlayerRecord("Please input player A's record as points:");
+  let playerA = getPlayerRecord("playerA");
 
   // Get player B's record
-  let playerB = getPlayerRecord("Please input player B's record as points:");
+  let playerB = getPlayerRecord("playerB");
 
   let output = "";
 
@@ -87,5 +87,5 @@ function main() {
   document.getElementById("output").innerText = output;
 }
 
-// Call main function when the page loads
-main();
+// Add event listener to the "Calculate" button
+document.getElementById("calculateButton").addEventListener("click", main);
