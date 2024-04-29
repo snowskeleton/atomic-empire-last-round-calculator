@@ -54,26 +54,35 @@ function main() {
 
   let output = "";
 
-  // playerA wins
-  output += "If player A wins:\n";
+  // Calculate scenarios
   let totalAp1 = playerA + win;
   let totalBp1 = playerB + loss;
-  output += `Player A: ${calculate(totalAp1).packs} packs\n`;
-  output += `Player B: ${calculate(totalBp1).packs} packs\n`;
-
-  // players tie
-  output += "If players tie:\n";
   let totalAp2 = playerA + tie;
   let totalBp2 = playerB + tie;
-  output += `Player A: ${calculate(totalAp2).packs} packs\n`;
-  output += `Player B: ${calculate(totalBp2).packs} packs\n`;
-
-  // playerB wins
-  output += "If player B wins:\n";
   let totalAp3 = playerA + loss;
   let totalBp3 = playerB + win;
-  output += `Player A: ${calculate(totalAp3).packs} packs\n`;
-  output += `Player B: ${calculate(totalBp3).packs} packs\n`;
+
+  // Calculate total packs for each scenario
+  let packs1 = calculate(totalAp1).packs + calculate(totalBp1).packs;
+  let packs2 = calculate(totalAp2).packs + calculate(totalBp2).packs;
+  let packs3 = calculate(totalAp3).packs + calculate(totalBp3).packs;
+
+  // Determine the winning scenario
+  let winner;
+  let maxPacks = Math.max(packs1, packs2, packs3);
+  if (maxPacks === packs1) {
+    winner = "Player A should win";
+  } else if (maxPacks === packs2) {
+    winner = "Players should take the Intentional Draw";
+  } else {
+    winner = "Player B should win";
+  }
+
+  // Output results
+  output += `If player A wins:\nPlayer A: ${calculate(totalAp1).packs} packs\nPlayer B: ${calculate(totalBp1).packs} packs\n`;
+  output += `If players tie:\nPlayer A: ${calculate(totalAp2).packs} packs\nPlayer B: ${calculate(totalBp2).packs} packs\n`;
+  output += `If player B wins:\nPlayer A: ${calculate(totalAp3).packs} packs\nPlayer B: ${calculate(totalBp3).packs} packs\n`;
+  output += `\n${winner}, total: ${maxPacks} packs`;
 
   document.getElementById("output").innerText = output;
 }
