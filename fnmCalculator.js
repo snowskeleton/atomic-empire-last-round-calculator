@@ -1,6 +1,6 @@
 // Function to handle input from the user
-function getPlayerRecord(promptMsg) {
-  return parseInt(prompt(promptMsg));
+function getPlayerRecord(id) {
+  return parseInt(document.getElementById(id).value);
 }
 
 // Function to calculate prize payout based on player's record
